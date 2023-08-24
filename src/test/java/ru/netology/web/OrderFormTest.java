@@ -1,16 +1,16 @@
 package ru.netology.web;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import dev.failsafe.internal.util.Assert;
+import org.junit.jupiter.api.*;
+
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class OrderFormTest {
@@ -37,8 +37,16 @@ public class OrderFormTest {
     }
 
     @Test
-    void shouldTestSomething() throws InterruptedException {
-        driver.get("http://localhost:9999");
-        Thread. sleep (500);
+    void shouldTestSomething() {
+        driver.get("http://0.0.0.0:9999/");
+        driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Настя Рахманова");
+        driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79852000000");
+        driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
+        driver.findElement(By.cssSelector("button")).click();
+
+        String text = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText();
+
+        String expected = "  Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
+        assertEquals(expected, text);
     }
 }
