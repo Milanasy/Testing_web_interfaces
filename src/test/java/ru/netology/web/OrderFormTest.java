@@ -1,24 +1,25 @@
 package ru.netology.web;
 
-import dev.failsafe.internal.util.Assert;
-import org.junit.jupiter.api.*;
-
-
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
+
 public class OrderFormTest {
     private WebDriver driver;
 
     @BeforeAll
-    static  void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "driver/chromedriver");
+    public static void setupAll() {
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
