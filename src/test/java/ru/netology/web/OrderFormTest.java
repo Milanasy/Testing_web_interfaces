@@ -37,8 +37,8 @@ public class OrderFormTest {
     }
 
     @Test
-    void shouldTestSomething() {
-        driver.get("http://0.0.0.0:9999/");
+    void shouldValidFormTest() {
+        driver.get("http://localhost:9999");
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Настя Рахманова");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79852000000");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
